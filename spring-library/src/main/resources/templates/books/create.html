@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head :insert="~{fragments/fragments :: head}">
+</head>
+
+<body>
+	<header th:insert="~{fragments/navbar :: navbar('books/create')}"></header>
+
+	<main class="container">
+		<div class="row">
+			<div class="col-12">
+
+				<th:block>
+
+					<h1 class="py-4 mb-2 text-center">
+						Create new Book
+					</h1>
+					
+					<div class="justify-content-center">
+					<div class="col-6">
+					
+						<form 
+						 id="book-form"
+						 th:object="${book}"
+						 th:action="@{/books/create}"
+						 method="POST"
+						 >
+						 
+						 <ul>
+				        <li th:each="err : ${#fields.allErrors()}" 
+						    th:text="${err}">
+				        </li>
+		                </ul>
+						 
+							<div class="mb-3"></div>
+								<label for="title" class="form-label">Title:</label>
+								<input type="text" class="form-control" id="title" placeholder="Moby Dick" th:field="*{title}">
+								</div>
+							<div class="mb-3">
+								<label for="author" class="form-label">Author;</label>
+								<input type="text" class="form-control" id="author" placeholder="Herman Melville" th:field="*{author}">
+							</div>
+							<div class="mb-3">
+								<label for="isbn" class="form-label">ISBN-code:</label>
+								<input type="text" class="form-control" id="isbn" placeholder="9781503280786" th:field="*{isbn}">
+							</div>
+							<div class="mb-3">
+								<input type="submit" class="btn btn.primary btn-lg" value="Create new book">
+								<input type="reset" class="btn btn.primary btn-lg" value="Reset fields">
+							</div>
+							</form>
+				
+					</div>
+					</div>
+
+			</th:block>
+
+
+
+		</div>
+		</div>
+	</main>
+
+<footer th:replace="~{fragments/fragments :: footer}"></footer>
+<th:block th:replace="~{fragments/fragments :: scripts}"></th:block>
+</body>
+</html>
+
+</body>
+</html>
